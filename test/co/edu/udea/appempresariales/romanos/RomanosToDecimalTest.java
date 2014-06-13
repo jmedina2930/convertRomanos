@@ -50,7 +50,7 @@ public class RomanosToDecimalTest {
 		String romano = "DD";
 		RomanosToDecimal converter = new RomanosToDecimal();
 		String result = converter.convert(romano);
-		Assert.assertEquals("1000", result);		
+		Assert.assertEquals("Error", result);		
 	}
 	
 	@Test
@@ -58,7 +58,76 @@ public class RomanosToDecimalTest {
 		String romano = "XXC";
 		RomanosToDecimal converter = new RomanosToDecimal();
 		String result = converter.convert(romano);
-		Assert.assertEquals("80", result);		
+		Assert.assertEquals("Error", result);		
+	}
+	
+	@Test
+	public void convertXXIIItest() {
+		String romano = "XXIII";
+		RomanosToDecimal converter = new RomanosToDecimal();
+		String result = converter.convert(romano);
+		Assert.assertEquals("23", result);		
+	}
+	
+	@Test
+	public void convertXXLVIICtest() {
+		String romano = "XXLVII";
+		RomanosToDecimal converter = new RomanosToDecimal();
+		String result = converter.convert(romano);
+		Assert.assertEquals("Error", result);		
+	}
+	
+	@Test
+	public void convertVLCtest() {
+		String romano = "VL";
+		RomanosToDecimal converter = new RomanosToDecimal();
+		String result = converter.convert(romano);
+		Assert.assertEquals("Error", result);		
+	}
+	
+	@Test
+	public void convertCMMtest() {
+		String romano = "CMM";
+		RomanosToDecimal converter = new RomanosToDecimal();
+		String result = converter.convert(romano);
+		Assert.assertEquals("Error", result);		
+	}
+	
+	@Test
+	public void convertIXVItest() {
+		String romano = "IXVI";
+		RomanosToDecimal converter = new RomanosToDecimal();
+		String result = converter.convert(romano);
+		Assert.assertEquals("Error", result);		
+	}
+	
+	@Test
+	public void convertICtest() {
+		String romano = "IC";
+		RomanosToDecimal converter = new RomanosToDecimal();
+		String result = converter.convert(romano);
+		Assert.assertEquals("Error", result);		
+	}
+	
+	@Test
+	public void convertIXLtest() {
+		String romano = "IXL";
+		RomanosToDecimal converter = new RomanosToDecimal();
+		String result = converter.convert(romano);
+		Assert.assertEquals("Error", result);		
+	}
+	
+	public void convertXILtest() {
+		String romano = "XIL";
+		RomanosToDecimal converter = new RomanosToDecimal();
+		String result = converter.convert(romano);
+		Assert.assertEquals("Error", result);		
+	}
+	public void convertVIVtest() {
+		String romano = "VIV";
+		RomanosToDecimal converter = new RomanosToDecimal();
+		String result = converter.convert(romano);
+		Assert.assertEquals("Error", result);		
 	}
 
 }

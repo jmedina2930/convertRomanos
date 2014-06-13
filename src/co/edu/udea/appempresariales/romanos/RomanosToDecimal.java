@@ -4,51 +4,103 @@ public class RomanosToDecimal {
 
 	public String convert(String romano) {
 		
-		int intDigito=0;
-		int resultado=0;
-		int anterior=0;
+		int intDigit=0;
+		int result=0;
+		int previous=0;
 		int contadorIguales=0;
 		int temporal=0;
+		int subtracted=0;
+		int subtractedPossible1=0;
+		int subtractedPossible2=0;
 		String strResultado;
+		boolean currentIsReplicable = false;
+		boolean previousIsReplicable = false;
+		boolean wasSubtracted = false;
 		
-		for (Character digito: romano.toUpperCase().toCharArray()){			
+		
+		for (Character digito: romano.toUpperCase().toCharArray()){
+			currentIsReplicable = false;
 			switch (digito){
 			case 'I':
-				intDigito = 1;
+				intDigit = 1;
+				currentIsReplicable=true;
+				subtractedPossible1=5;
+				subtractedPossible2=10;
 				break;
 			case 'V':
-				intDigito = 5;
+				intDigit = 5;
 				break;
 			case 'X': 
-				intDigito = 10;
+				intDigit = 10;
+				currentIsReplicable=true;
+				subtractedPossible1=50;
+				subtractedPossible2=100;
 				break;
 			case 'L':
-				intDigito = 50;
+				intDigit = 50;
 				break;
 			case 'C':
-				intDigito = 100;
+				intDigit = 100;
+				currentIsReplicable=true;
+				subtractedPossible1=1000;				
 				break;
 			case 'D':
-				intDigito = 500;
+				intDigit = 500;
 				break;
 			case 'M':
-				intDigito = 1000;
+				intDigit = 1000;
+				currentIsReplicable = true;
 				break;
 			default:
 				 strResultado= "Error";
-				 break;
+				 return strResultado;
 					
 			}
 			
-			if ((anterior == 0 || anterior == intDigito) && contadorIguales<3){
-				anterior = intDigito;
-				resultado+=intDigito;
+			if (previous == 0){				
+				previous = intDigit;
+				temporal = intDigit;
 				contadorIguales++;
-			}else if (anterior < intDigito){
-//				reultado=
+				previousIsReplicable=currentIsReplicable;
+				
+			}else if (previous == intDigit && contadorIguales<=3){
+				if (currentIsReplicable==false || wasSubtracted==true){
+					strResultado= "Error";
+					return strResultado;
+				}
+				previous = intDigit;
+				temporal += intDigit;
+				previousIsReplicable=currentIsReplicable;
+				contadorIguales++;
+				
+			}else if (previous < intDigit){
+				if (previousIsReplicable==false || contadorIguales>1 || 
+						(subtractedPossible1!=intDigit && subtractedPossible1!=intDigit) ){
+					strResultado= "Error";					
+					return strResultado;
+				}
+				subtracted=previous;
+				wasSubtracted=true;
+				previous = intDigit;
+				temporal = intDigit - temporal;
+				contadorIguales = 0;
+				previousIsReplicable=currentIsReplicable;
+				
+			}else if (previous > intDigit){
+				if (intDigit<subtracted){
+					strResultado= "Error";
+					return strResultado;
+				}
+				previous = intDigit;				
+				previousIsReplicable=currentIsReplicable;
+				contadorIguales=0;				
+				result += temporal;				
+				temporal = intDigit;
+							
 			}
 		}
-		return String.valueOf(resultado);
+		result += temporal; 
+		return String.valueOf(result);
 	}
 
 }
